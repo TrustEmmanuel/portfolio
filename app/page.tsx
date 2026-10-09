@@ -295,12 +295,6 @@ function Resume() {
           className={primaryButton}
         />
       </div>
-      <a
-        href={profile.resume.url}
-        className="mt-4 inline-block text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950"
-      >
-        {profile.resume.url}
-      </a>
 
       <ResumeLists />
     </section>
