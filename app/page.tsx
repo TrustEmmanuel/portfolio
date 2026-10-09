@@ -9,6 +9,9 @@ const primaryButton =
 const secondaryButton =
   "inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-medium text-zinc-950 ring-1 ring-zinc-200 transition-colors hover:bg-zinc-50";
 
+const pill =
+  "rounded-full bg-[#f3f1ec] px-3 py-1 text-sm text-zinc-800";
+
 const card =
   "rounded-3xl bg-white shadow-[0_1px_2px_rgba(22,22,22,0.04)]";
 
@@ -184,40 +187,20 @@ function TechStack() {
       <h2 className="font-display text-2xl font-semibold tracking-tight">
         {profile.stackTitle}
       </h2>
-      <ul className="mt-5 grid items-start gap-3 sm:grid-cols-2">
+      <ul className={`mt-5 divide-y divide-zinc-200 ${card}`}>
         {profile.stack.map((group) => (
-          <li key={group.category} className={`p-6 ${card}`}>
-            <h3 className="text-sm text-zinc-600">{group.category}</h3>
-            {"groups" in group ? (
-              <ul className="mt-4 flex flex-col gap-4">
-                {group.groups.map((subgroup) => (
-                  <li key={subgroup.label}>
-                    <p className="text-xs text-zinc-600">{subgroup.label}</p>
-                    <ul className="mt-2 flex flex-wrap gap-2">
-                      {subgroup.items.map((item) => (
-                        <li
-                          key={item}
-                          className="rounded-full bg-[#f3f1ec] px-3 py-1 text-sm text-zinc-800"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full bg-[#f3f1ec] px-3 py-1 text-sm text-zinc-800"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            )}
+          <li
+            key={group.category}
+            className="flex flex-col gap-3 px-6 py-5 sm:flex-row sm:items-start"
+          >
+            <p className="shrink-0 text-sm text-zinc-600 sm:w-64">{group.category}</p>
+            <ul className="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li key={item} className={pill}>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
@@ -231,40 +214,13 @@ function Services() {
       <h2 className="font-display text-2xl font-semibold tracking-tight">
         {profile.servicesTitle}
       </h2>
-      <ol className="mt-5 grid gap-3 md:grid-cols-3">
-        {profile.services.map((service, index) => {
-          const featured = index === 0;
-
-          return (
-            <li
-              key={service.title}
-              className={
-                featured
-                  ? "rounded-3xl bg-zinc-950 p-7 text-white"
-                  : `p-7 ${card}`
-              }
-            >
-              <p className="text-sm text-zinc-400">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="mt-8 font-display text-2xl font-semibold tracking-tight">
-                {service.title}
-              </h3>
-              {service.description ? (
-                <p
-                  className={
-                    featured
-                      ? "mt-3 text-sm leading-6 text-zinc-300"
-                      : "mt-3 text-sm leading-6 text-zinc-600"
-                  }
-                >
-                  {service.description}
-                </p>
-              ) : null}
-            </li>
-          );
-        })}
-      </ol>
+      <ul className={`mt-5 grid gap-2 p-6 sm:grid-cols-2 ${card}`}>
+        {profile.services.map((service) => (
+          <li key={service.title} className={`${pill} w-fit`}>
+            {service.title}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
@@ -289,9 +245,14 @@ function FeaturedProjects() {
           {profile.featured.allLabel}
         </Link>
       </div>
-      <div className="mt-5 grid gap-4 md:grid-cols-3">
-        {items.map((project) => (
-          <ProjectCard key={project.title} project={project} />
+      <div className="mt-5 flex flex-col gap-6">
+        {items.map((project, index) => (
+          <ProjectCard
+            key={project.title}
+            project={project}
+            imageFirst={index % 2 === 1}
+            showStory={project.storyOnHome === true}
+          />
         ))}
       </div>
     </section>
@@ -330,6 +291,12 @@ function Resume() {
           {profile.resume.downloadLabel}
         </a>
       </div>
+      <a
+        href={profile.resume.url}
+        className="mt-4 inline-block text-sm text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950"
+      >
+        {profile.resume.url}
+      </a>
 
       <ResumeLists />
     </section>
@@ -408,9 +375,7 @@ function CallToAction() {
       <h2 className="font-display text-3xl font-semibold tracking-tight">
         {profile.cta.title}
       </h2>
-      <Link href={profile.cta.href} className={primaryButton}>
-        {profile.cta.button}
-      </Link>
+      <GetInTouch className={primaryButton} label={profile.cta.button} />
     </section>
   );
 }

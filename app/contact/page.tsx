@@ -3,7 +3,8 @@ import { GetInTouch } from "@/components/MessageBox";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Send a message and I will get back to you.",
+  description:
+    "I'm a Forward Deployed Engineer. Send a message and I will get back to you.",
 };
 
 const primaryButton =
@@ -16,10 +17,29 @@ export default function ContactPage() {
       <h1 className="font-display text-5xl font-semibold tracking-tight">
         Contact
       </h1>
-      <p className="mt-6 max-w-md text-lg leading-8 text-zinc-600">
-        Send a message and I will get back to you.
-      </p>
-      <GetInTouch className={primaryButton} label="Get in touch" />
+      <div className="mt-10 rounded-3xl bg-white p-7 shadow-[0_1px_2px_rgba(22,22,22,0.04)] sm:p-10">
+        <p className="max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          I&apos;m a Forward Deployed Engineer.
+        </p>
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-800">
+          I work from the customer&apos;s constraints, ship something they can
+          use, and explain what broke in plain language.
+        </p>
+        <div className="mt-5 max-w-2xl space-y-3 text-lg leading-8 text-zinc-600">
+          <p>I have a passion for the needs I hear.</p>
+          <p>
+            I&apos;m fluent in AI for business today,
+            <br />
+            and I stay with the work until it finds its way.
+          </p>
+          <p>
+            Send a message and I will get back to you,
+            <br />
+            so we can shape the work and see it through.
+          </p>
+        </div>
+        <GetInTouch className={primaryButton} label="Get in touch" />
+      </div>
     </section>
   );
 }
