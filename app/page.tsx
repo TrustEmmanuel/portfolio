@@ -285,9 +285,12 @@ function Resume() {
   return (
     <section id="resume" className="scroll-mt-24">
       <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <h2 className="font-display text-2xl font-semibold tracking-tight">
-          {profile.resume.title}
-        </h2>
+        <div>
+          <h2 className="font-display text-2xl font-semibold tracking-tight">
+            {profile.resume.title}
+          </h2>
+          <p className="mt-2 max-w-md text-zinc-600">{profile.resume.text}</p>
+        </div>
         <ResumeDownload
           href={profile.resume.downloadHref}
           label={profile.resume.downloadLabel}

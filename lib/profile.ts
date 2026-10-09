@@ -131,6 +131,7 @@ export const profile = {
   },
   resume: {
     title: "Resume",
+    text: "View my resume. My experience speaks for itself.",
     downloadLabel: "Download resume",
     downloadHref: `${basePath}/resume.pdf`,
     downloadName: "Emmanuel_Udeka_Resume.pdf",
