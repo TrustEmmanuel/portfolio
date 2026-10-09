@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetInTouch } from "@/components/MessageBox";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ResumeDownload } from "@/components/ResumeDownload";
 import { isUnfilled, profile, readyProjects } from "@/lib/profile";
 
 const primaryButton =
@@ -287,9 +288,12 @@ function Resume() {
         <h2 className="font-display text-2xl font-semibold tracking-tight">
           {profile.resume.title}
         </h2>
-        <a href={profile.resume.downloadHref} className={primaryButton}>
-          {profile.resume.downloadLabel}
-        </a>
+        <ResumeDownload
+          href={profile.resume.downloadHref}
+          label={profile.resume.downloadLabel}
+          fileName={profile.resume.downloadName}
+          className={primaryButton}
+        />
       </div>
       <a
         href={profile.resume.url}

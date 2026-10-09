@@ -133,6 +133,7 @@ export const profile = {
     title: "Resume",
     downloadLabel: "Download resume",
     downloadHref: `${basePath}/resume.pdf`,
+    downloadName: "Emmanuel_Udeka_Resume.pdf",
     url: `${siteUrl}/resume.pdf`,
     experienceTitle: "Experience",
     educationTitle: "Education",
