@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   agentRules: false,
   // GitHub Pages serves the exported files. It does not run a Node server.
   output: "export",
+  basePath: "/portfolio",
+  assetPrefix: "/portfolio",
   images: { unoptimized: true },
   trailingSlash: true,
 };

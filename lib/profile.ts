@@ -5,7 +5,8 @@ const githubUrl = "https://github.com/TrustEmmanuel";
 const linkedinUrl = "https://www.linkedin.com/in/emmanuel-udeka/";
 const emailAddress = "udekaem@gmail.com";
 // Replace this with the public site URL when the portfolio is deployed.
-const siteUrl = "https://trustemmanuel.github.io";
+const basePath = "/portfolio";
+const siteUrl = `https://trustemmanuel.github.io${basePath}`;
 
 export const profile = {
   name: "Emmanuel Udeka",
@@ -13,7 +14,7 @@ export const profile = {
   headline: "Full-Stack Developer",
   badge: "Available for projects",
   greeting: "Hi, I'm Emmanuel Udeka",
-  photo: "/images/emmanuel-udeka.jpg",
+  photo: `${basePath}/images/emmanuel-udeka.jpg`,
   photoAlt: "Portrait of Emmanuel Udeka",
   bio: "I'm Emmanuel, a software and product developer with 6 years of experience building software and fintech products. I turn ideas into secure, reliable web and mobile apps.",
   about: {
@@ -131,7 +132,7 @@ export const profile = {
   resume: {
     title: "Resume",
     downloadLabel: "Download resume",
-    downloadHref: "/resume.pdf",
+    downloadHref: `${basePath}/resume.pdf`,
     url: `${siteUrl}/resume.pdf`,
     experienceTitle: "Experience",
     educationTitle: "Education",
@@ -219,7 +220,7 @@ export const projects: Project[] = [
       },
     ],
     storyOnHome: true,
-    image: "/images/petrovault.png",
+    image: `${basePath}/images/petrovault.png`,
     liveUrl: "https://petrovault-inventory.netlify.app/",
     githubUrl: "https://github.com/TrustEmmanuel/petrovault",
     featured: true,
@@ -254,7 +255,7 @@ export const projects: Project[] = [
         text: "Without the connected services, the site runs on the sample shelf. Saved shoppers, saved orders, and receipt emails need those services.",
       },
     ],
-    image: "/images/tajmart.png",
+    image: `${basePath}/images/tajmart.png`,
     liveUrl: "https://grocery-store-hng.netlify.app/",
     githubUrl: "https://github.com/TrustEmmanuel/hng-grocery-store",
     featured: true,

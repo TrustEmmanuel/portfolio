@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://trustemmanuel.github.io/sitemap.xml
+Sitemap: https://trustemmanuel.github.io/portfolio/sitemap.xml
