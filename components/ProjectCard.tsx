@@ -108,22 +108,7 @@ export function ProjectCard({
             </div>
           ) : null}
         </div>
-        {project.image && project.imageFit === "frame" ? (
-          <div
-            className={`group flex items-center bg-[#f3f1ec] p-4 sm:p-5 ${imageFirst ? "lg:order-1" : ""}`}
-          >
-            <div className="overflow-hidden rounded-xl">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={project.imageWidth ?? 1024}
-                height={project.imageHeight ?? 436}
-                sizes="(min-width: 1024px) 420px, 100vw"
-                className={`h-auto w-full ${zoomOnHover ? zoom : ""}`}
-              />
-            </div>
-          </div>
-        ) : project.image ? (
+        {project.image ? (
           <div
             className={`group relative min-h-72 overflow-hidden bg-[#f3f1ec] lg:min-h-full ${imageFirst ? "lg:order-1" : ""}`}
           >
@@ -158,27 +143,19 @@ function ShowcaseCard({
   return (
     <article
       id={project.title.toLowerCase().replaceAll(" ", "-")}
-      className="rounded-[28px] bg-white p-4 shadow-[0_1px_2px_rgba(22,22,22,0.04)] sm:p-6"
+      className="overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(22,22,22,0.04)]"
     >
-      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <div className="rounded-2xl bg-[#e7e5e0] p-3 sm:p-4">
-            <div className="group overflow-hidden rounded-xl">
-              <Image
-                src={project.image}
-                alt={`${project.title} product interface`}
-                width={1024}
-                height={475}
-                sizes="(min-width: 1024px) 460px, 100vw"
-                className={`h-auto w-full ${zoomOnHover ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""}`}
-              />
-            </div>
-          </div>
-          <p className="mt-4 px-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-400">
-            {project.title} · Product interface
-          </p>
+      <div className="grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1fr)]">
+        <div className="group relative min-h-72 overflow-hidden bg-[#f3f1ec] lg:min-h-full">
+          <Image
+            src={project.image}
+            alt={`${project.title} product interface`}
+            fill
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className={`object-cover object-left-top ${zoomOnHover ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""}`}
+          />
         </div>
-        <div className="px-1 py-2 sm:px-4 lg:py-6">
+        <div className="flex flex-col p-7 sm:p-10">
           <p className="w-fit rounded-full bg-[#d9f5c8] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-900">
             Featured
           </p>
@@ -234,7 +211,7 @@ function ProjectNotes({
   }
 
   return (
-    <dl className="mt-8 grid gap-x-10 gap-y-6 border-t border-zinc-200 px-1 pt-8 sm:px-2 sm:grid-cols-2">
+    <dl className="grid gap-x-10 gap-y-6 border-t border-zinc-200 px-7 py-8 sm:px-10 sm:grid-cols-2">
       {project.caseStudy.map((note) => (
         <div key={note.label}>
           <dt className="text-sm text-zinc-600">{note.label}</dt>
