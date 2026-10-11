@@ -182,6 +182,8 @@ export type Project = {
   featured: boolean;
   caseStudy?: ProjectNote[];
   storyOnHome?: boolean;
+  showOnHome?: boolean;
+  highlightOnHome?: boolean;
 };
 
 // Bracket text is a blank to fill in. Those entries stay off the page.
@@ -221,6 +223,7 @@ export const projects: Project[] = [
       },
     ],
     storyOnHome: true,
+    showOnHome: true,
     image: `${basePath}/images/petrovault.png`,
     liveUrl: "https://petrovault-inventory.netlify.app/",
     githubUrl: "https://github.com/TrustEmmanuel/petrovault",
@@ -294,6 +297,8 @@ export const projects: Project[] = [
     image: `${basePath}/images/oakwood.png`,
     githubUrl: "https://github.com/TrustEmmanuel/oakwood-banking-management-system",
     featured: true,
+    showOnHome: true,
+    highlightOnHome: true,
   },
 ];
 

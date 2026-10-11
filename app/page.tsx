@@ -227,7 +227,7 @@ function Services() {
 }
 
 function FeaturedProjects() {
-  const items = readyProjects().slice(0, 3);
+  const items = readyProjects().filter((project) => project.showOnHome);
 
   if (items.length === 0) {
     return null;
@@ -253,6 +253,7 @@ function FeaturedProjects() {
             project={project}
             imageFirst={index % 2 === 1}
             showStory={project.storyOnHome === true}
+            highlight={project.highlightOnHome === true}
           />
         ))}
       </div>

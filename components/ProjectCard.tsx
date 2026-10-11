@@ -9,18 +9,24 @@ export function ProjectCard({
   headingLevel = 3,
   imageFirst = false,
   showStory = false,
+  highlight = false,
 }: {
   project: Project;
   headingLevel?: 2 | 3;
   imageFirst?: boolean;
   showStory?: boolean;
+  highlight?: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
 
   return (
     <article
       id={project.title.toLowerCase().replaceAll(" ", "-")}
-      className="overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(22,22,22,0.04)]"
+      className={
+        highlight
+          ? "overflow-hidden rounded-3xl bg-white shadow-[0_16px_40px_rgba(22,22,22,0.08)] ring-2 ring-zinc-950"
+          : "overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(22,22,22,0.04)]"
+      }
     >
       <div
         className={
@@ -32,6 +38,11 @@ export function ProjectCard({
         <div
           className={`flex flex-col p-7 sm:p-10 ${imageFirst ? "lg:order-2" : ""}`}
         >
+          {highlight ? (
+            <p className="w-fit rounded-full bg-[#f3f1ec] px-3 py-1 text-sm text-zinc-800">
+              Highlighted
+            </p>
+          ) : null}
           {project.liveUrl ? (
             <p className="flex items-center gap-2 text-sm text-zinc-800">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
