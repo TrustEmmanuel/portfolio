@@ -31,10 +31,12 @@ This is the source code for my personal portfolio: a fast, responsive site that 
 | --- | --- | --- | --- |
 | **PetroVault** | Inventory workspace for tubulars, MRO, chemicals, and serialized assets across U.S. Gulf and onshore stock. Role limits are enforced when actions run, and every stock movement is chained to the one before it so tampering is detectable. | TypeScript, React, Vite, Tailwind CSS, Zod | [Live](https://petrovault-inventory.netlify.app/) · [Code](https://github.com/TrustEmmanuel/petrovault) |
 | **TajMart** | A neighborhood grocery store built for Nigerian kitchens. Google sign-in keeps the basket with the shopper, delivery is paid by transfer or cash, and a failed receipt email never drops the order. | JavaScript, React, Vite, Supabase, Google Sign-In, Mailgun | [Live](https://grocery-store-hng.netlify.app/) · [Code](https://github.com/TrustEmmanuel/hng-grocery-store) |
+| **Oakwood** | Specimen treasury for dollars, sterling, and naira. Payments settle on a ledger in the browser. No bank is contacted and no payment is sent. | JavaScript, React, Vite, Tailwind CSS | [Code](https://github.com/TrustEmmanuel/oakwood-banking-management-system) |
 
 <p align="center">
-  <img src="https://trustemmanuel.github.io/portfolio/images/petrovault.png" alt="PetroVault preview" width="48%" />
-  <img src="https://trustemmanuel.github.io/portfolio/images/tajmart.png" alt="TajMart preview" width="48%" />
+  <img src="https://trustemmanuel.github.io/portfolio/images/petrovault.png" alt="PetroVault preview" width="32%" />
+  <img src="https://trustemmanuel.github.io/portfolio/images/tajmart.png" alt="TajMart preview" width="32%" />
+  <img src="https://trustemmanuel.github.io/portfolio/images/oakwood.png" alt="Oakwood preview" width="32%" />
 </p>
 
 See all 19 projects on the [portfolio site](https://trustemmanuel.github.io/portfolio/projects/) and on my [GitHub profile](https://github.com/TrustEmmanuel).
