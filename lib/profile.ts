@@ -184,7 +184,6 @@ export type Project = {
   storyOnHome?: boolean;
   showOnHome?: boolean;
   highlightOnHome?: boolean;
-  imageLayout?: "banner";
   frames?: { src: string; width: number; height: number }[];
 };
 
@@ -297,7 +296,6 @@ export const projects: Project[] = [
       },
     ],
     image: `${basePath}/images/oakwood.png`,
-    imageLayout: "banner",
     frames: [
       { src: `${basePath}/images/oakwood.png`, width: 1024, height: 355 },
       { src: `${basePath}/images/oakwood-history.png`, width: 1024, height: 360 },
@@ -306,6 +304,7 @@ export const projects: Project[] = [
     featured: true,
     showOnHome: true,
     highlightOnHome: true,
+    storyOnHome: true,
   },
 ];
 

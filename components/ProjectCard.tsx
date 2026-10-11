@@ -28,27 +28,10 @@ export function ProjectCard({
           : "overflow-hidden rounded-3xl bg-white shadow-[0_1px_2px_rgba(22,22,22,0.04)]"
       }
     >
-      {project.imageLayout === "banner" && project.image ? (
-        <div className="flex flex-col gap-3 bg-[#e7f3ec] p-3 sm:p-4">
-          {(project.frames ?? [{ src: project.image, width: 1024, height: 475 }]).map(
-            (frame) => (
-              <Image
-                key={frame.src}
-                src={frame.src}
-                alt={project.title}
-                width={frame.width}
-                height={frame.height}
-                sizes="(min-width: 1024px) 960px, 100vw"
-                className="h-auto w-full rounded-2xl"
-              />
-            ),
-          )}
-        </div>
-      ) : null}
       <div
         className={
-          project.imageLayout === "banner"
-            ? ""
+          project.frames?.length
+            ? "grid lg:grid-cols-[minmax(0,1.25fr)_minmax(200px,0.68fr)]"
             : imageFirst
               ? "grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1fr)]"
               : "grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)]"
@@ -112,7 +95,21 @@ export function ProjectCard({
             </div>
           ) : null}
         </div>
-        {project.image && project.imageLayout !== "banner" ? (
+        {project.frames?.length ? (
+          <div className="flex flex-col justify-center gap-3 bg-[#e7f3ec] p-4 sm:p-5">
+            {project.frames.map((frame) => (
+              <Image
+                key={frame.src}
+                src={frame.src}
+                alt={project.title}
+                width={frame.width}
+                height={frame.height}
+                sizes="(min-width: 1024px) 280px, 100vw"
+                className="h-auto w-full rounded-xl shadow-[0_8px_24px_rgba(6,40,30,0.12)]"
+              />
+            ))}
+          </div>
+        ) : project.image ? (
           <div
             className={`relative min-h-72 bg-[#f3f1ec] lg:min-h-full ${imageFirst ? "lg:order-1" : ""}`}
           >
