@@ -261,6 +261,40 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/TrustEmmanuel/hng-grocery-store",
     featured: true,
   },
+  {
+    title: "Oakwood",
+    summary: "A specimen treasury for dollars, sterling, and naira.",
+    description:
+      "A corporate banking workspace for a treasurer. Wires, batches, bills, and credit movements settle on a ledger that stays in the browser.",
+    audience:
+      "The treasurer funds a payment from an available balance and authorizes it with a PIN. The specimen writes the receipt. Nothing leaves the browser.",
+    tech: ["JavaScript", "React", "Vite", "Tailwind CSS"],
+    caseStudy: [
+      {
+        label: "The job",
+        text: "A treasurer sees dollars, sterling, and naira in one book and authorizes what leaves each account.",
+      },
+      {
+        label: "The scope",
+        text: "Single, multiple, and bulk payments, bills, beneficiaries, statements, and credit facilities. A naira payment carries a NIP charge. A cross-border wire carries a cable charge. A move between the company's own accounts does not. A value date can be today, or scheduled within 30 days.",
+      },
+      {
+        label: "The rule",
+        text: "The amount, the narration, the value date, the available balance, and the mandate PIN are checked when the instruction runs. A wrong PIN is refused and written to the audit. A cross-currency payment uses the specimen board rate.",
+      },
+      {
+        label: "The recovery",
+        text: "The book is saved in this browser. If that saved book no longer matches the specimen shape, Oakwood opens a fresh one. Reset demo data puts back the opening ledger, payees, and facilities, and keeps the signed-in mandate.",
+      },
+      {
+        label: "The limit",
+        text: "It is a specimen. No bank is contacted and no payment is sent. Sign-in is a specimen mandate stored in the browser.",
+      },
+    ],
+    image: `${basePath}/images/oakwood.png`,
+    githubUrl: "https://github.com/TrustEmmanuel/oakwood-banking-management-system",
+    featured: true,
+  },
 ];
 
 export function readyProjects() {
