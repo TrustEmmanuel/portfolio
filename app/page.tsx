@@ -251,7 +251,7 @@ function FeaturedProjects() {
           <ProjectCard
             key={project.title}
             project={project}
-            imageFirst={index % 2 === 1 && !project.frames?.length}
+            imageFirst={index % 2 === 1}
             showStory={project.storyOnHome === true}
             highlight={project.highlightOnHome === true}
           />

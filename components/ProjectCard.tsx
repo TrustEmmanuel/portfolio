@@ -19,6 +19,16 @@ export function ProjectCard({
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
 
+  if (project.layout === "showcase") {
+    return (
+      <ShowcaseCard
+        project={project}
+        headingLevel={headingLevel}
+        showStory={showStory}
+      />
+    );
+  }
+
   return (
     <article
       id={project.title.toLowerCase().replaceAll(" ", "-")}
@@ -30,11 +40,9 @@ export function ProjectCard({
     >
       <div
         className={
-          project.frames?.length
-            ? "grid lg:grid-cols-[minmax(0,1.25fr)_minmax(200px,0.68fr)]"
-            : imageFirst
-              ? "grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1fr)]"
-              : "grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)]"
+          imageFirst
+            ? "grid lg:grid-cols-[minmax(280px,0.92fr)_minmax(0,1fr)]"
+            : "grid lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.92fr)]"
         }
       >
         <div
@@ -95,21 +103,7 @@ export function ProjectCard({
             </div>
           ) : null}
         </div>
-        {project.frames?.length ? (
-          <div className="flex flex-col justify-center gap-3 bg-[#e7f3ec] p-4 sm:p-5">
-            {project.frames.map((frame) => (
-              <Image
-                key={frame.src}
-                src={frame.src}
-                alt={project.title}
-                width={frame.width}
-                height={frame.height}
-                sizes="(min-width: 1024px) 280px, 100vw"
-                className="h-auto w-full rounded-xl shadow-[0_8px_24px_rgba(6,40,30,0.12)]"
-              />
-            ))}
-          </div>
-        ) : project.image ? (
+        {project.image ? (
           <div
             className={`relative min-h-72 bg-[#f3f1ec] lg:min-h-full ${imageFirst ? "lg:order-1" : ""}`}
           >
@@ -123,16 +117,106 @@ export function ProjectCard({
           </div>
         ) : null}
       </div>
-      {showStory && project.caseStudy && project.caseStudy.length > 0 ? (
-        <dl className="grid gap-x-10 gap-y-6 border-t border-zinc-200 px-7 py-8 sm:px-10 sm:grid-cols-2">
-          {project.caseStudy.map((note) => (
-            <div key={note.label}>
-              <dt className="text-sm text-zinc-600">{note.label}</dt>
-              <dd className="mt-2 text-sm leading-6 text-zinc-800">{note.text}</dd>
-            </div>
-          ))}
-        </dl>
-      ) : null}
+      <ProjectNotes project={project} showStory={showStory} />
     </article>
+  );
+}
+
+function ShowcaseCard({
+  project,
+  headingLevel,
+  showStory,
+}: {
+  project: Project;
+  headingLevel: 2 | 3;
+  showStory: boolean;
+}) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
+
+  return (
+    <article
+      id={project.title.toLowerCase().replaceAll(" ", "-")}
+      className="rounded-[28px] bg-white p-4 shadow-[0_1px_2px_rgba(22,22,22,0.04)] sm:p-6"
+    >
+      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <div className="rounded-2xl bg-[#e7e5e0] p-3 sm:p-4">
+            <Image
+              src={project.image}
+              alt={`${project.title} product interface`}
+              width={1024}
+              height={475}
+              sizes="(min-width: 1024px) 460px, 100vw"
+              className="h-auto w-full rounded-xl"
+            />
+          </div>
+          <p className="mt-4 px-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-400">
+            {project.title} · Product interface
+          </p>
+        </div>
+        <div className="px-1 py-2 sm:px-4 lg:py-6">
+          <p className="w-fit rounded-full bg-[#d9f5c8] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-900">
+            Featured
+          </p>
+          <Heading className="mt-5 font-display text-5xl font-semibold tracking-tight sm:text-6xl">
+            {project.title}.
+          </Heading>
+          <p className="mt-4 max-w-md text-2xl font-medium leading-snug tracking-tight text-zinc-950">
+            {project.summary}
+          </p>
+          <p className="mt-4 max-w-md text-sm leading-6 text-zinc-600">
+            {project.description}
+          </p>
+          <p className="mt-3 max-w-md text-sm leading-6 text-zinc-800">
+            {project.audience}
+          </p>
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {project.tech.map((item) => (
+              <li
+                key={item}
+                className="rounded-full bg-white px-3 py-1 text-sm text-zinc-800 ring-1 ring-zinc-200"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          {project.githubUrl ? (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-zinc-950 ring-1 ring-zinc-200 transition-colors hover:bg-zinc-50"
+            >
+              View code
+              <span aria-hidden>→</span>
+            </a>
+          ) : null}
+        </div>
+      </div>
+      <ProjectNotes project={project} showStory={showStory} />
+    </article>
+  );
+}
+
+function ProjectNotes({
+  project,
+  showStory,
+}: {
+  project: Project;
+  showStory: boolean;
+}) {
+  if (!showStory || !project.caseStudy || project.caseStudy.length === 0) {
+    return null;
+  }
+
+  return (
+    <dl className="mt-8 grid gap-x-10 gap-y-6 border-t border-zinc-200 px-1 pt-8 sm:px-2 sm:grid-cols-2">
+      {project.caseStudy.map((note) => (
+        <div key={note.label}>
+          <dt className="text-sm text-zinc-600">{note.label}</dt>
+          <dd className="mt-2 text-sm leading-6 text-zinc-800">{note.text}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }
