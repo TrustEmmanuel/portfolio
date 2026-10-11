@@ -254,6 +254,7 @@ function FeaturedProjects() {
             imageFirst={index % 2 === 1}
             showStory={project.storyOnHome === true}
             highlight={project.highlightOnHome === true}
+            zoomOnHover
           />
         ))}
       </div>

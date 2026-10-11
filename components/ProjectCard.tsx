@@ -10,14 +10,18 @@ export function ProjectCard({
   imageFirst = false,
   showStory = false,
   highlight = false,
+  zoomOnHover = false,
 }: {
   project: Project;
   headingLevel?: 2 | 3;
   imageFirst?: boolean;
   showStory?: boolean;
   highlight?: boolean;
+  zoomOnHover?: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
+  const zoom =
+    "transition-transform duration-500 ease-out group-hover:scale-105";
 
   if (project.layout === "showcase") {
     return (
@@ -25,6 +29,7 @@ export function ProjectCard({
         project={project}
         headingLevel={headingLevel}
         showStory={showStory}
+        zoomOnHover={zoomOnHover}
       />
     );
   }
@@ -103,16 +108,31 @@ export function ProjectCard({
             </div>
           ) : null}
         </div>
-        {project.image ? (
+        {project.image && project.imageFit === "frame" ? (
           <div
-            className={`relative min-h-72 bg-[#f3f1ec] lg:min-h-full ${imageFirst ? "lg:order-1" : ""}`}
+            className={`group flex items-center bg-[#f3f1ec] p-4 sm:p-5 ${imageFirst ? "lg:order-1" : ""}`}
+          >
+            <div className="overflow-hidden rounded-xl">
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={project.imageWidth ?? 1024}
+                height={project.imageHeight ?? 436}
+                sizes="(min-width: 1024px) 420px, 100vw"
+                className={`h-auto w-full ${zoomOnHover ? zoom : ""}`}
+              />
+            </div>
+          </div>
+        ) : project.image ? (
+          <div
+            className={`group relative min-h-72 overflow-hidden bg-[#f3f1ec] lg:min-h-full ${imageFirst ? "lg:order-1" : ""}`}
           >
             <Image
               src={project.image}
               alt={`${project.title}`}
               fill
               sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-cover object-left-top"
+              className={`object-cover object-left-top ${zoomOnHover ? zoom : ""}`}
             />
           </div>
         ) : null}
@@ -126,10 +146,12 @@ function ShowcaseCard({
   project,
   headingLevel,
   showStory,
+  zoomOnHover,
 }: {
   project: Project;
   headingLevel: 2 | 3;
   showStory: boolean;
+  zoomOnHover: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
 
@@ -141,14 +163,16 @@ function ShowcaseCard({
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
         <div>
           <div className="rounded-2xl bg-[#e7e5e0] p-3 sm:p-4">
-            <Image
-              src={project.image}
-              alt={`${project.title} product interface`}
-              width={1024}
-              height={475}
-              sizes="(min-width: 1024px) 460px, 100vw"
-              className="h-auto w-full rounded-xl"
-            />
+            <div className="group overflow-hidden rounded-xl">
+              <Image
+                src={project.image}
+                alt={`${project.title} product interface`}
+                width={1024}
+                height={475}
+                sizes="(min-width: 1024px) 460px, 100vw"
+                className={`h-auto w-full ${zoomOnHover ? "transition-transform duration-500 ease-out group-hover:scale-105" : ""}`}
+              />
+            </div>
           </div>
           <p className="mt-4 px-1 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-400">
             {project.title} · Product interface

@@ -185,6 +185,9 @@ export type Project = {
   showOnHome?: boolean;
   highlightOnHome?: boolean;
   layout?: "showcase";
+  imageFit?: "frame";
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 // Bracket text is a blank to fill in. Those entries stay off the page.
@@ -226,6 +229,9 @@ export const projects: Project[] = [
     storyOnHome: true,
     showOnHome: true,
     image: `${basePath}/images/petrovault.png`,
+    imageFit: "frame",
+    imageWidth: 1024,
+    imageHeight: 436,
     liveUrl: "https://petrovault-inventory.netlify.app/",
     githubUrl: "https://github.com/TrustEmmanuel/petrovault",
     featured: true,
